@@ -1,32 +1,20 @@
-function check_palindrome( str )
-{
-	let j = str.length -1;
-	for( let i = 0 ; i < j/2 ;i++)
-	{
-	let x = str[i] ;
-	let y = str[j-i];
-	if( x != y)
-	{
-		return false;
-	}
-	}
-	return true;
-	
-}
-
-
-function is_palindrome( str )
-{
-	let ans = check_palindrome(str);
-	if( ans == true )
-	{
-	console.log("passed string is palindrome ");
-	}
-	else
-	{
-	console.log("passed string not a palindrome");
-	}
-}
-// test variable
-let test = "meem";
-is_palindrome(test);
+const txtInput = document.querySelector(".inputs input"),
+checkBtn = document.querySelector(".inputs button"),
+infoTxt = document.querySelector(".info-txt");
+let filterInput;
+checkBtn.addEventListener("click", () => {
+    let reverseInput = filterInput.split("").reverse().join("");
+    infoTxt.style.display = "block";
+    if(filterInput != reverseInput) {
+        return infoTxt.innerHTML = `No, <span>'${txtInput.value}'</span> isn't a palindrome!`;
+    }
+    infoTxt.innerHTML = `Yes, <span>'${txtInput.value}'</span> is a palindrome!`;
+});
+txtInput.addEventListener("keyup", () => {
+    filterInput = txtInput.value.toLowerCase().replace(/[^A-Z0-9]/ig, "");
+    if(filterInput) {
+        return checkBtn.classList.add("active");
+    }
+    infoTxt.style.display = "none";
+    checkBtn.classList.remove("active");
+});
