@@ -3,12 +3,20 @@ checkBtn = document.querySelector(".inputs button"),
 infoTxt = document.querySelector(".info-txt");
 let filterInput;
 checkBtn.addEventListener("click", () => {
-    let reverseInput = filterInput.split("").reverse().join("");
-    infoTxt.style.display = "block";
-    if(filterInput != reverseInput) {
-        return infoTxt.innerHTML = `No, <span>'${txtInput.value}'</span> isn't a palindrome!`;
+    if(txtInput.value.length < 10 )
+    {
+
+        let reverseInput = filterInput.split("").reverse().join("");
+        infoTxt.style.display = "block";
+        if(filterInput != reverseInput) {
+            return infoTxt.innerHTML = `No, <span>'${txtInput.value}'</span> isn't a palindrome!`;
+        }
+        infoTxt.innerHTML = `Yes, <span>'${txtInput.value}'</span> is a palindrome!`;
     }
-    infoTxt.innerHTML = `Yes, <span>'${txtInput.value}'</span> is a palindrome!`;
+    else
+    {
+        infoTxt.innerHTML = `<span>'${txtInput.value}'</span> has more than 10 characters`;
+    }
 });
 txtInput.addEventListener("keyup", () => {
     filterInput = txtInput.value.toLowerCase().replace(/[^A-Z0-9]/ig, "");
